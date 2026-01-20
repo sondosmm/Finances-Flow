@@ -23,6 +23,7 @@ const expeseSchema = new mongoose.Schema({
       "Shopping",
       "Other",
     ],
+    default:"Other",
   },
   description: {
     type: "String",
@@ -32,15 +33,11 @@ const expeseSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    required: false,
     default: Date.now,
   },
-  createdAt: {
-    type: Date,
-    required: false,
-    default: Date.now,
-  },
-});
+  
+},{timestamps:true}
+);
 
 expeseSchema.index({userId:1,date:-1});
 

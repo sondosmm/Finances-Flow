@@ -4,17 +4,16 @@ const ApiError = require('../utils/apiError');
 dotenv.config({path:"../.env"});
 
 const auth =(req,res,next)=>{
-    const authHeader=req.header.authorization;
-    if (!authHeader||authHeader.stratsWith('Bearer '))
-        return next(new ApiError("No Token Provided",401));
+    const accessToken = req.cookies.accessToken;
+    if (!accessToken)
+      return next(new ApiError("No Token Provided", 401));
     try {
-        token=authHeader.split(' ')[1];
-        const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
-        req.userId=decoded.id;
+        const decoded = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET);
+        req.user={_id:decoded.id};
         next();
     }
     catch(err){
-        next (new ApiError('Invalid access'),401);
+        next (new ApiError('Invalid access',401));
     }
 };
 

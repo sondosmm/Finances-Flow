@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-ecommerce-api-v1",
+  "name": "finance-flow",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "express-async-handler": "^1.2.0",
     "express-mongo-sanitize": "^2.2.0",
     "express-rate-limit": "^8.2.1",
-    "express-validator": "^7.3.0",
+    "express-validator": "^7.3.1",
     "fs": "^0.0.1-security",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",

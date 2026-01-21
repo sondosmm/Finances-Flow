@@ -1,13 +1,15 @@
 const express= require('express');
 const dotenv=require('dotenv');
+dotenv.config({path:'./config.env'});
 const dbConnection=require('./config/db');
 const authRoutes=require('./routes/authRoutes');
 const userRoutes=require('./routes/userRoutes');
+const expenseRoutes=require('./routes/expenseRoutes');
 const cookieParser=require('cookie-parser');
 const ApiError=require('./utils/apiError');
 const {globalErrorHandler}=require('./middleware/errorMiddleware');
 
-dotenv.config({path:'./config.env'});
+
 dbConnection();
 
 const app = express();
@@ -17,6 +19,7 @@ app.use(cookieParser());
 
 app.use('/api/v1/auth',authRoutes);
 app.use('/api/v1/user',userRoutes);
+app.use('/api/v1/expense',expenseRoutes);
 
 
 app.use(globalErrorHandler);

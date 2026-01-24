@@ -1,6 +1,6 @@
 const mongoose= require('mongoose');
 
-const expeseSchema = new mongoose.Schema({
+const expenseSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -39,7 +39,7 @@ const expeseSchema = new mongoose.Schema({
 },{timestamps:true}
 );
 
-expeseSchema.index({userId:1,date:-1});
+expenseSchema.index({userId:1,date:-1});
 
 
-module.exports=mongoose.model('Expense',expeseSchema);
+module.exports=mongoose.model('Expense',expenseSchema);

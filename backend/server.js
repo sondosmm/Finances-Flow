@@ -8,7 +8,9 @@ const reportRoutes = require("./routes/reportRoutes");
 const expenseRoutes=require('./routes/expenseRoutes');
 const cookieParser=require('cookie-parser');
 const ApiError=require('./utils/apiError');
-const {globalErrorHandler}=require('./middleware/errorMiddleware');
+const { globalErrorHandler } = require('./middleware/errorMiddleware');
+
+require('./jobs/emailJob');
 
 
 dbConnection();

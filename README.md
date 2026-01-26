@@ -4,7 +4,7 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 
 ---
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 - Node.js
 - Express.js
@@ -17,7 +17,7 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 
 ---
 
-## 🔐 Authentication
+##  Authentication
 
 - JWT-based authentication
 - Access token stored in HTTP-only cookies
@@ -26,7 +26,7 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 
 ---
 
-## 🧱 Architecture
+##  Architecture
 
 - MVC Pattern
 - Modular folder structure
@@ -36,20 +36,20 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 
 ---
 
-## 🧩 Core Features
+##  Core Features
 
-### 👤 User
+###  User
 - Register & login
 - Update profile and budget
 - Secure password hashing
 
-### 💸 Expenses
+###  Expenses
 - Create / read / update / delete expenses
 - Pagination support
 - Category-based tracking
 - User-level data isolation
 
-### 📊 Reports
+###  Reports
 - Monthly expense summary
 - MongoDB aggregation pipeline
 - Auto-generated Excel reports
@@ -57,7 +57,7 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 
 ---
 
-## ✅ Validation
+##  Validation
 
 - Zod schema validation
 - Request validation middleware
@@ -66,7 +66,7 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 
 ---
 
-## 🛡 Security
+##  Security
 
 - JWT authentication
 - HTTP-only cookies
@@ -77,7 +77,7 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 
 ---
 
-## ⚙️ Background Jobs
+##  Background Jobs
 
 - Node-cron monthly report scheduler
 - Automated email delivery
@@ -88,7 +88,7 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 
 ---
 
-## 📌 Key Concepts Used
+##  Key Concepts Used
 
 - REST API design
 - Async/Await
@@ -102,7 +102,7 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 
 ---
 
-## 🧪 Working On
+##  Working On
 
 - Swagger documentation
 - Redis caching

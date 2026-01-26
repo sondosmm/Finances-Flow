@@ -9,7 +9,7 @@ const auth =(req,res,next)=>{
       return next(new ApiError("No Token Provided", 401));
     try {
         const decoded = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET);
-        req.user={_id:decoded.id};
+        req.user=decoded;
         next();
     }
     catch(err){

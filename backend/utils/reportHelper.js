@@ -5,7 +5,7 @@ exports.getSummary = async (userId, month, year) => {
     const start = new Date(year, month - 1, 1);
     const end = new Date(year, month, 1);
     const objectUserId = new mongoose.Types.ObjectId(userId);
-    const expenses = await Expense.find({ userId: userId, date: { $gte: start, $lt: end } });
+   // const expenses = await Expense.find({ userId: userId, date: { $gte: start, $lt: end } });
     const categories = await Expense.aggregate([
         {
             $match: {
@@ -20,7 +20,7 @@ exports.getSummary = async (userId, month, year) => {
             }
         }
     ]);
-    const totalSpent = expenses.reduce((sum, e) => sum + e.amount, 0);
+    const totalSpent = categories.reduce((sum, e) => sum + e.total, 0);
     const user = await User.findById(userId);
     return {
         month: `${year}-${month}`,

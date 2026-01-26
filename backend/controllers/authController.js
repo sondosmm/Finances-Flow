@@ -16,11 +16,11 @@ exports.login=asyncHandler(async(req,res,next)=>{
         return next(new ApiError('incorrect email or password',401));
     }
     const accessToken = generateToken(user._id);
-    res.cookie("accessToken", accessToken, { httpOnly: true });
+    res.cookie("accessToken", accessToken, { httpOnly: true, sameSite: "strict" });
     res.status(200).json({message:'user logged in successfully'});
 });
 
 exports.logout=asyncHandler(async(req,res,next)=>{
-    res.clearCookie("accessToken", { httpOnly: true });
+    res.clearCookie("accessToken", { httpOnly: true, sameSite: "strict" });
     res.status(200).json({message:'user logged out successfully'});
 });

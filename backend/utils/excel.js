@@ -1,9 +1,10 @@
 const ExcelJs = require('exceljs');
 const fs = require('fs');
 const path = require('path');
-
+const ApiError = require('./apiError');
 exports.generateExcel = async (summary) => {
-    const workbook = new ExcelJs.Workbook;
+    try {
+        const workbook = new ExcelJs.Workbook;
     const sheet = workbook.addWorksheet("monthly report");
 
     sheet.columns = [
@@ -34,4 +35,8 @@ exports.generateExcel = async (summary) => {
     const filePath = path.join(exportDir, `report-${summary.month}.xlsx`);
     await workbook.xlsx.writeFile(filePath);
     return filePath;
+    }
+    catch (err) {
+        throw new ApiError("Failed to Generate Excel File", 500);
+    }
 }

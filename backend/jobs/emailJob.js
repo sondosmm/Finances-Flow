@@ -35,4 +35,4 @@ const reportJob=async () => {
 
 cron.schedule("0 0 1 * *", reportJob);
 
-//reportJob();
+reportJob();

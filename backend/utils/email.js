@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const ApiError = require('./apiError');
 require('dotenv').config({ path: './config.env' });
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -11,11 +12,15 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.sendEmail = async ({ to, subject, html, attachments = [] }) => {
-    await transporter.sendMail({
+    try {
+        await transporter.sendMail({
         from: `Finance Flow <${process.env.EMAIL_USER}`,
         to,
         subject,
         html,
         attachments
     });
+    }catch (err) {
+        throw new ApiError("Failed to Send Email", 500);
+    }
 };

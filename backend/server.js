@@ -10,7 +10,7 @@ const cookieParser=require('cookie-parser');
 const ApiError=require('./utils/apiError');
 const { globalErrorHandler } = require('./middleware/errorMiddleware');
 
-require('./jobs/emailJob');
+//require('./jobs/emailJob'); this line was here for testing
 
 
 dbConnection();
@@ -24,6 +24,11 @@ app.use('/api/v1/auth',authRoutes);
 app.use('/api/v1/user',userRoutes);
 app.use('/api/v1/expense', expenseRoutes);
 app.use('/api/v1/report',reportRoutes)
+
+
+app.use((req, res, next) => {
+  next(new ApiError(`Can't find this route: ${req.originalUrl}`, 404));
+});
 
 
 app.use(globalErrorHandler);

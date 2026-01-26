@@ -8,7 +8,10 @@ const dbConnection =async ()=>{
     }
     catch(err){
         console.error(`Database Connection error: ${err}`);
+        process.exit(1);
     };
+    
+
 };
 
 

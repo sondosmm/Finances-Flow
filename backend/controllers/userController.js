@@ -19,10 +19,10 @@ exports.updateUserInfo=asyncHandler(async(req,res,next)=>{
     if (!user) {
       return next(new ApiError("User not found", 404));
     }
-    if (name!==undefined)
-        user.name=name;
-    if (budget !== undefined)
-        user.budget = budget;
+    // if (name!==undefined)
+    //     user.name=name; checked in validator
+    // if (budget !== undefined)
+    //     user.budget = budget;
     await user.save();
    res.status(200).json({message:'user updated successfully',data:user});
 });

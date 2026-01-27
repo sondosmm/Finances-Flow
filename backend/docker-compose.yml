@@ -1,0 +1,8 @@
+services:
+  finance-flow-api:
+    build: .
+    container_name: finance-flow-api
+    ports:
+     - "5001:5000"
+    env_file:
+     - config.env

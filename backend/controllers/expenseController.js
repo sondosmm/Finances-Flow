@@ -26,8 +26,22 @@ exports.getExpense = asyncHandler(async (req, res, next) => {
 exports.getExpenses = asyncHandler(async (req, res, next) => {
     const page=req.query.page*1||1;
     const limit =Math.min(req.query.limit*1||4,50);
-    const skip=(page-1)*limit;
-  const expenses = await Expense.find({userId:req.user.id}).sort({date:-1}).skip(skip).limit(limit);
+    const skip = (page - 1) * limit;
+    const { category, from, to } = req.query;
+    const filter = { userId: req.user.id };
+    if (category)
+    {
+        filter.category = category;
+    }
+    // if (from || to)
+    // {
+    //     filter.date = {};
+    //     if (from)
+    //         filter.date.$gte = new Date(from);
+    //     if (to)
+    //         filter.date.$lte = new Date(from);
+    // }
+  const expenses = await Expense.find(filter).sort({date:-1}).skip(skip).limit(limit);
   res.status(200).json({page:page,limit:limit, data: expenses });
 });
 

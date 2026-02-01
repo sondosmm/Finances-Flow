@@ -11,7 +11,7 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 - MongoDB
 - Mongoose
 - JWT Authentication
-- Zod Validation
+- Joi Validation
 - Nodemailer
 - ExcelJS
 

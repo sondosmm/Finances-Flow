@@ -11,7 +11,7 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 - MongoDB
 - Mongoose
 - JWT Authentication
-- Zod Validation
+- Joi Validation
 - Nodemailer
 - ExcelJS
 
@@ -59,7 +59,7 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 
 ##  Validation
 
-- Zod schema validation
+- Joi schema validation
 - Request validation middleware
 - Body / params / query validation
 - Clean controller logic
@@ -70,7 +70,6 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 
 - JWT authentication
 - HTTP-only cookies
-- Rate limiting
 - Environment-based config
 - Central error handler
 - Input sanitization
@@ -106,6 +105,7 @@ A RESTful backend API for personal finance tracking built with Node.js and Expre
 
 - Swagger documentation
 - Redis caching
+- Rate limiting
 - Role-based access
 - Deployment (Render / Railway)
 - CI/CD pipelines

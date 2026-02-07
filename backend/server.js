@@ -1,4 +1,5 @@
-const express= require('express');
+const express = require('express');
+const helmet = require('helmet');
 const dotenv=require('dotenv');
 dotenv.config({path:'./config.env'});
 const dbConnection=require('./config/db');
@@ -18,6 +19,9 @@ dbConnection();
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use(helmet());
+
+
 
 
 app.use('/api/v1/auth',authRoutes);

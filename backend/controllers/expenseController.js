@@ -33,14 +33,14 @@ exports.getExpenses = asyncHandler(async (req, res, next) => {
     {
         filter.category = category;
     }
-    // if (from || to)
-    // {
-    //     filter.date = {};
-    //     if (from)
-    //         filter.date.$gte = new Date(from);
-    //     if (to)
-    //         filter.date.$lte = new Date(from);
-    // }
+    if (from || to)
+    {
+        filter.date = {};
+        if (from)
+            filter.date.$gte = new Date(from);
+        if (to)
+            filter.date.$lte = new Date(to);
+    }
   const expenses = await Expense.find(filter).sort({date:-1}).skip(skip).limit(limit);
   res.status(200).json({page:page,limit:limit, data: expenses });
 });

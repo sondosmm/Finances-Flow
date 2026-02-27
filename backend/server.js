@@ -2,7 +2,8 @@ const express = require('express');
 const helmet = require('helmet');
 const dotenv=require('dotenv');
 dotenv.config({path:'./config.env'});
-const dbConnection=require('./config/db');
+const dbConnection = require('./config/db');
+const rateLimit = require('express-rate-limit');
 const authRoutes=require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const reportRoutes = require("./routes/reportRoutes");
@@ -16,8 +17,15 @@ const { globalErrorHandler } = require('./middleware/errorMiddleware');
 
 dbConnection();
 
+
 const app = express();
 app.use(express.json());
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+  message:"Too many requests"
+});
+app.use(limiter);
 app.use(cookieParser());
 app.use(helmet());
 

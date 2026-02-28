@@ -11,6 +11,6 @@ exports.getMonthlyExcel = asyncHandler(async (req, res, next) => {
 
     const filePath = await excel.generateExcel(summary);
     res.download(filePath
-        // , () => { fs.unlinkSync(filePath) } commented cause i want the file to test
+        , () => { fs.unlinkSync(filePath) } 
     );
 });

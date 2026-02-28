@@ -42,7 +42,7 @@ exports.getExpenses = asyncHandler(async (req, res, next) => {
             filter.date.$lte = new Date(to);
     }
   const expenses = await Expense.find(filter).sort({date:-1}).skip(skip).limit(limit);
-  res.status(200).json({page:page,limit:limit, data: expenses });
+  res.status(200).json({page:page,limit:limit,count:expenses.length, data: expenses });
 });
 
 exports.updateExpense=asyncHandler(async(req,res,next)=>{

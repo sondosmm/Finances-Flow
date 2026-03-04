@@ -9,7 +9,7 @@ const validate = (schema) => (req, res, next) => {
     },
     {
       abortEarly: false,
-      allowUnknown: true, // <--- 1. This stops the "params not allowed" error
+      allowUnknown: true, 
       errors: {
         wrap: { label: '' }
       }

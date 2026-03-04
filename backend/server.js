@@ -12,7 +12,7 @@ const cookieParser=require('cookie-parser');
 const ApiError=require('./utils/apiError');
 const { globalErrorHandler } = require('./middleware/errorMiddleware');
 
-//require('./jobs/emailJob'); this line was here for testing
+require('./jobs/emailJob'); 
 
 
 dbConnection();

@@ -1,5 +1,6 @@
 const email = require('../utils/email');
 const excel = require("../utils/excel");
+const fs = require('fs');
 const reportHelper = require("../utils/reportHelper");
 const User = require('../models/userModel');
 const cron = require('node-cron');
@@ -29,10 +30,11 @@ const reportJob=async () => {
                 path: filePath
             }]
         });
+        fs.unlink(filePath, () => { });
     }
 };
 
 
 cron.schedule("0 0 1 * *", reportJob);
 
-reportJob();
+//reportJob();

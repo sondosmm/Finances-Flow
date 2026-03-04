@@ -62,7 +62,7 @@ exports.updateExpense=asyncHandler(async(req,res,next)=>{
         updates.description = description;
     if (date !== undefined)
         updates.date = date;
-    const updatedExpense= await Expense.findOneAndUpdate({_id:req.params.id,userId:req.user.id},updates,{new:true,runValidation:true});
+    const updatedExpense= await Expense.findOneAndUpdate({_id:req.params.id,userId:req.user.id},updates,{new:true,runValidators:true});
     res.status(200).json({data:updatedExpense});
 });
 

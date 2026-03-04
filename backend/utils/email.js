@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 exports.sendEmail = async ({ to, subject, html, attachments = [] }) => {
     try {
         await transporter.sendMail({
-        from: `Finance Flow <${process.env.EMAIL_USER}`,
+        from: `Finance Flow <${process.env.EMAIL_USER}>`,
         to,
         subject,
         html,

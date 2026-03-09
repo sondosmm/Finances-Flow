@@ -1,5 +1,6 @@
 const express = require('express');
 const helmet = require('helmet');
+const morgan = require('morgan');
 const dotenv=require('dotenv');
 dotenv.config({path:'./config.env'});
 const dbConnection = require('./config/db');
@@ -28,6 +29,7 @@ const limiter = rateLimit({
 app.use(limiter);
 app.use(cookieParser());
 app.use(helmet());
+app.use(morgan('dev'));
 
 
 

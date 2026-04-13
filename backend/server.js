@@ -8,7 +8,8 @@ const rateLimit = require('express-rate-limit');
 const authRoutes=require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const reportRoutes = require("./routes/reportRoutes");
-const expenseRoutes=require('./routes/expenseRoutes');
+const expenseRoutes = require('./routes/expenseRoutes');
+const assistantRoutes = require('./routes/assistantRoutes');
 const cookieParser=require('cookie-parser');
 const ApiError=require('./utils/apiError');
 const { globalErrorHandler } = require('./middleware/errorMiddleware');
@@ -37,7 +38,10 @@ app.use(morgan('dev'));
 app.use('/api/v1/auth',authRoutes);
 app.use('/api/v1/user',userRoutes);
 app.use('/api/v1/expense', expenseRoutes);
-app.use('/api/v1/report',reportRoutes)
+app.use('/api/v1/report', reportRoutes);
+app.use('/api/v1/assistant', assistantRoutes);
+
+
 
 
 app.use((req, res, next) => {

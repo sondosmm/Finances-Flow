@@ -14,12 +14,15 @@ exports.getMonthlyExcel = asyncHandler(async (req, res, next) => {
         , () => { fs.unlinkSync(filePath) } 
     );
 });
-exports.getMonthlyReport = aysncHandler(async (req, res, next) => {
-    const { month, year } = req.query;
-    const summary = await reportHelper.getSummary(req.user.id, month * 1, year * 1);
-    res.status(200).json({ summary });
-    
-})
+exports.getMonthlyReport = asyncHandler(async (req, res, next) => {
+  const { month, year } = req.query;
+  const summary = await reportHelper.getSummary(
+    req.user.id,
+    month * 1,
+    year * 1,
+  );
+  res.status(200).json({ summary });
+});
 
 exports.getYearlyReport = asyncHandler(async (req, res, next) => {
     const year = req.query.year;

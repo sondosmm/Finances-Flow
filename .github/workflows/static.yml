@@ -28,23 +28,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20   # or 22 / 25 if you prefer
+          node-version: 20
           cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
 
-      - name: Install dependencies (Frontend only)
+      - name: Install dependencies
         run: cd frontend && npm ci
 
-      - name: Build Vite app
+      - name: Build Vite frontend
         run: cd frontend && npm run build
 
-      - name: Setup Pages
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact (only the built dist folder)
+      - name: Upload built dist folder
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './frontend/dist'     # ← This is the key change
+          path: frontend/dist          # ← Make sure no leading ./
 
       - name: Deploy to GitHub Pages
         id: deployment

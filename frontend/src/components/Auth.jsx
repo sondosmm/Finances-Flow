@@ -9,7 +9,8 @@ export default function Auth({ onLogin }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    const url = `http://localhost:5000/api/v1/auth/${isLogin ? "login" : "register"}`;
+    const API = import.meta.env.VITE_API_URL;
+    const url = `${API}/auth/${isLogin ? "login" : "register"}`;
     try {
       await axios.post(url, form, { withCredentials: true });
       onLogin();

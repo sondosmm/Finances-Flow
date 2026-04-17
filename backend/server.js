@@ -32,7 +32,8 @@ app.use(limiter);
 app.use(cookieParser());
 app.use(helmet());
 app.use(morgan('dev'));
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+const allowedOrigin = process.env.FRONT_URL || "http://localhost:5173";
+app.use(cors({ origin: allowedOrigin, credentials: true }));
 
 
 

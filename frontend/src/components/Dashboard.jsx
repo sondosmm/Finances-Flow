@@ -4,7 +4,7 @@ import AssistantChat from "./AssistantChat";
 import ExpenseForm from "./ExpenseForm";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 
-const API = "http://localhost:5000/api/v1";
+const API = import.meta.env.VITE_API_URL;
 
 const COLORS = ["#2563eb", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6", "#ec4899", "#06b6d4"];
 

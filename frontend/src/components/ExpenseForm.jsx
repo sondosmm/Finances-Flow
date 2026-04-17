@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const API = "http://localhost:5000/api/v1";
+const API = import.meta.env.VITE_API_URL;
 
 export default function ExpenseForm({ onExpenseAdded, onCancel, editExpense = null }) {
   const [amount, setAmount] = useState(editExpense ? editExpense.amount : "");

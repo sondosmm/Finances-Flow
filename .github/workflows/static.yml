@@ -32,19 +32,19 @@ jobs:
           cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
 
-      - name: Install dependencies
+      - name: Install frontend dependencies
         run: cd frontend && npm ci
 
-      - name: Build Vite frontend
+      - name: Build Vite app
         run: cd frontend && npm run build
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload built dist folder
+      - name: Upload only the built frontend
         uses: actions/upload-pages-artifact@v3
         with:
-          path: frontend/dist          # ← Make sure no leading ./
+          path: frontend/dist
 
       - name: Deploy to GitHub Pages
         id: deployment

@@ -29,3 +29,48 @@ exports.getSummary = async (userId, month, year) => {
         categories
     };
 };
+
+exports.getYearlySummary = async (userId, year) => {
+  const start = new Date(year, 0, 1);
+  const end = new Date(year + 1, 0, 1);
+  const objectUserId = new mongoose.Types.ObjectId(userId);
+  const data = await Expense.aggregate([
+    {
+      $match: {
+        userId: objectUserId,
+        date: {
+          $gte: start,
+          $lt: end,
+        },
+      },
+    },
+    {
+      $group: {
+        _id: { $month: "$date" },
+        total: { $sum: "$amount" },
+      },
+    },
+    {
+      $sort: { _id: 1 },
+    },
+  ]);
+  
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  return months.map((month, i) => {
+    const found = data.find((d) => d._id === i + 1);
+    return { month, total: found ? found.total : 0 };
+  });
+};

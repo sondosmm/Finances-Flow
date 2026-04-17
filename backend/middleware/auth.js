@@ -1,7 +1,5 @@
 const jwt = require ('jsonwebtoken');
-const dotenv=require ('dotenv');
 const ApiError = require('../utils/apiError');
-dotenv.config({path:"../.env"});
 
 const auth =(req,res,next)=>{
     const accessToken = req.cookies.accessToken;

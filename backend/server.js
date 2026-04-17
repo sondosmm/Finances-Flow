@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const cors = require('cors');
 const dotenv=require('dotenv');
 dotenv.config({path:'./config.env'});
 const dbConnection = require('./config/db');
@@ -31,7 +32,7 @@ app.use(limiter);
 app.use(cookieParser());
 app.use(helmet());
 app.use(morgan('dev'));
-
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 
 

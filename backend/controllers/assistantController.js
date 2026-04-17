@@ -43,14 +43,14 @@ const handleAdd = async (parsed, userId) => {
 
 const handleRead = async (parsed, message, userId) => {
     const data = { userId }
-    const filters = parsed.data || {};
-    if (filters.category)
-        data.category = filters.category;
-    if (filters.from || filters.to) data.date = {};
-    if (filters.from)
-        data.date.$gte = new Date(filters.from);
-    if (filters.to)
-        data.date.$lte = new Date(filters.to);
+    const filter = parsed.filters || {};
+    if (filter.category)
+        data.category = filter.category;
+    if (filter.from || filter.to) data.date = {};
+    if (filter.from)
+        data.date.$gte = new Date(filter.from);
+    if (filter.to)
+        data.date.$lte = new Date(filter.to);
 
     const expenses = await Expense.find(data).sort({ date: -1 }).limit(50);
     const reply = await FriendlyReply(message, expenses);
@@ -83,19 +83,19 @@ const processMessage = async (message, userId) => {
 
 const transcribeAudio = async (file) => {
     try {
-        
         const transcription = await groq.audio.transcriptions.create({
-          file: await toFile(fs.createReadStream(file.path),file.originalname),
+            file: await toFile(fs.createReadStream(file.path), file.originalname),
             model: "whisper-large-v3",
-          
-        });   
-        fs.unlinkSync(file.path);
+        });
         return transcription.text.trim();
     }
     catch (err) {
-        //console.log("transcribe error:", err);
-        if (fs.existsSync(file.path)) fs.unlinkSync(file.path);
-        throw new ApiError('Failed to transcibe audio', 500);
+        throw new ApiError('Failed to transcribe audio', 500);
+    }
+    finally {
+        if (file && file.path && fs.existsSync(file.path)) {
+            fs.unlinkSync(file.path);
+        }
     }
 };
 

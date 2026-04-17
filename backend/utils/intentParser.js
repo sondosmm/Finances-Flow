@@ -22,7 +22,8 @@ if no date mentioned, use today:${new Date().toISOString().split("T")[0]}
 3. If user wants a SUMMARY or REPORT (total spent, remaining budget, breakdown):
 {"intent":"report"}
 - extract month and year from what the user says
-- if no month mentioned use current month: ${new Date().getMonth() + 1}
+- if no month mentioned use current month
+
 - if no year mentioned use current year: ${new Date().getFullYear()}
 
 4. If unclear:

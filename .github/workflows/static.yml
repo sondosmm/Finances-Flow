@@ -1,5 +1,6 @@
 name: Deploy Frontend to GitHub Pages
-
+env:
+  VITE_API_URL: ${{ secrets.VITE_API_URL }}
 on:
   push:
     branches: ["main"]

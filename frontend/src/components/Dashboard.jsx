@@ -47,9 +47,10 @@ export default function Dashboard({ onLogout, onProfile }) {
   const handleLogout = async () => {
     try {
       await axios.post(`${API}/auth/logout`, {}, { withCredentials: true });
-      onLogout();
     } catch (err) {
       console.error("Logout failed", err);
+    } finally {
+      onLogout();
     }
   };
 
@@ -66,9 +67,26 @@ export default function Dashboard({ onLogout, onProfile }) {
   const exportReport = async () => {
     try {
       const now = new Date();
-      window.open(`${API}/report/export/excel?month=${now.getMonth() + 1}&year=${now.getFullYear()}`, "_blank");
+      const response = await axios.get(`${API}/report/export/excel`, {
+        params: {
+          month: now.getMonth() + 1,
+          year: now.getFullYear()
+        },
+        withCredentials: true,
+        responseType: 'blob'
+      });
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `Report-${now.getMonth() + 1}-${now.getFullYear()}.xlsx`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
     } catch (err) {
       console.error("Export failed", err);
+      alert("Export failed. Please ensure you are logged in and try again.");
     }
   };
 

@@ -31,7 +31,7 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 app.use(cookieParser());
-app.use(helmet());
+app.use(helmet({crossOriginResourcePolicy:{policy:"cross-origin"},contenSecurityPolicy:false}));
 app.use(morgan('dev'));
 const allowedOrigin = process.env.FRONT_URL || "http://localhost:5173";
 app.use(cors({ origin: allowedOrigin, credentials: true }));

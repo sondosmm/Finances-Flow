@@ -23,6 +23,10 @@ function App() {
     checkAuth();
   }, []);
 
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  };
+
   if (isAuthenticated === null) {
     return (
       <div style={{ height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "sans-serif" }}>
@@ -40,7 +44,7 @@ function App() {
         />
         <Route 
           path="/" 
-          element={isAuthenticated ? <Dashboard onLogout={checkAuth} onProfile={() => window.location.hash = "#/profile"} /> : <Navigate to="/login" />} 
+          element={isAuthenticated ? <Dashboard onLogout={handleLogout} onProfile={() => window.location.hash = "#/profile"} /> : <Navigate to="/login" />} 
         />
         <Route 
           path="/profile" 

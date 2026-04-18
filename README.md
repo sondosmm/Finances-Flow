@@ -64,11 +64,10 @@ Built on the MVC Pattern, the project maintains a strict separation of concerns 
 
 ---
 
-## Development Roadmap
+## Working On
 
 * Implementation of Swagger/OpenAPI documentation.
 * Redis integration for caching frequent report queries.
-* Role-Based Access Control (RBAC) for administrative monitoring.
 * Full CI/CD pipeline integration for automated deployment.
 
 ---

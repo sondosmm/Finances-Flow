@@ -16,9 +16,9 @@ export default function ExpenseForm({ onExpenseAdded, onCancel, editExpense = nu
     try {
       const payload = { amount: Number(amount), category, description, date };
       if (editExpense) {
-        await axios.put(`${API}/expense/updateExpense/${editExpense._id}`, payload, { withCredentials: true });
+        await axios.put(`${API}/expense/update/${editExpense._id}`, payload, { withCredentials: true });
       } else {
-        await axios.post(`${API}/expense/createExpense`, payload, { withCredentials: true });
+        await axios.post(`${API}/expense/create`, payload, { withCredentials: true });
       }
       onExpenseAdded();
     } catch (err) {

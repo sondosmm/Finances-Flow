@@ -56,7 +56,7 @@ export default function Dashboard({ onLogout, onProfile }) {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this expense?")) return;
     try {
-      await axios.delete(`${API}/expense/deleteExpense/${id}`, { withCredentials: true });
+      await axios.delete(`${API}/expense/delete/${id}`, { withCredentials: true });
       fetchData();
     } catch (err) {
       console.error("Delete failed", err);
@@ -66,7 +66,7 @@ export default function Dashboard({ onLogout, onProfile }) {
   const exportReport = async () => {
     try {
       const now = new Date();
-      window.open(`${API}/report/excel?month=${now.getMonth() + 1}&year=${now.getFullYear()}`, "_blank");
+      window.open(`${API}/report/export/excel?month=${now.getMonth() + 1}&year=${now.getFullYear()}`, "_blank");
     } catch (err) {
       console.error("Export failed", err);
     }
@@ -84,7 +84,7 @@ export default function Dashboard({ onLogout, onProfile }) {
         <h1 style={styles.logo}>Finance Flow</h1>
         <div style={{ display: "flex", gap: 10 }}>
           <button onClick={() => setShowForm(true)} style={styles.priBtn}>Add Expense</button>
-          <button onClick={exportReport} style={styles.secBtn}>Export CSV</button>
+          <button onClick={exportReport} style={styles.secBtn}>Export Excel</button>
           <button onClick={onProfile} style={styles.secBtn}>Profile</button>
           <button onClick={handleLogout} style={styles.logoutBtn}>Logout</button>
         </div>

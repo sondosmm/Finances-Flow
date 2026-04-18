@@ -17,11 +17,11 @@ const FriendlyReply = async (userMessage, data) => {
       messages: [
         {
           role: "user",
-          content: `You are a friendly personal finance assistant.
+          content: `You are a friendly but tough personal finance assistant.
 The user said: "${userMessage}"
 Here is the relevant data: ${JSON.stringify(data)}
 Reply based ONLY on the data provided. Do not assume or invent any information not present in the data.
-Be concise and helpful.`,
+Be concise and helpful — but if the user has spent more than their budget, roast them a little. Be funny and sarcastic but not mean. Keep it short.`,
         },
       ],
     });

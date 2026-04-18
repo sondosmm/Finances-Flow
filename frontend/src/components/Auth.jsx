@@ -10,6 +10,7 @@ export default function Auth({ onLogin }) {
     e.preventDefault();
     setError("");
     const API = import.meta.env.VITE_API_URL;
+    console.log("API URL:", API);
     const url = `${API}/auth/${isLogin ? "login" : "register"}`;
     try {
       await axios.post(url, form, { withCredentials: true });

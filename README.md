@@ -2,6 +2,8 @@
 
 A production-ready RESTful backend infrastructure designed for high-performance personal finance tracking, featuring automated reporting and an AI-driven voice assistant.
 
+Deployment Link: https://sondosmm.github.io/Finances-Flow/#
+
 ---
 
 ## Core Infrastructure
@@ -15,6 +17,41 @@ A production-ready RESTful backend infrastructure designed for high-performance 
 * **Data Processing:** ExcelJS & MongoDB Aggregation Pipelines
 
 ---
+## Getting Started
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+Create a `config.env` file with:
+
+PORT=5000
+DB_URI=
+JWT_ACCESS_SECRET=
+EMAIL_USER=
+EMAIL_PASSWORD=
+GROQ_API_KEY=
+
+Or run with Docker:
+
+```bash
+cd backend
+docker-compose up
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Create a `.env` file inside the `frontend/` folder with:
+
+VITE_API_URL=http://localhost:5000/api/v1
 
 ## Technical Features
 
@@ -37,12 +74,16 @@ A production-ready RESTful backend infrastructure designed for high-performance 
 
 ## Architecture Overview
 
-Built on the MVC Pattern, the project maintains a strict separation of concerns to ensure scalability and ease of testing:
+Built on the MVC Pattern with strict separation of concerns:
 
-* **Controllers:** Lean logic handling utilizing express-async-handler.
-* **Middlewares:** Centralized authentication, file upload (Multer), and global error handling.
-* **Utilities:** Reusable modules for email delivery, token generation, and Excel formatting.
-* **Models:** Strongly typed Mongoose schemas with indexing for optimized query performance.
+* **Controllers:** Request handling and business logic using express-async-handler.
+* **Routes:** Modular route definitions with validation middleware applied per endpoint.
+* **Middlewares:** Centralized JWT authentication, Multer file upload handling, Joi validation, and global error handling.
+* **Models:** Strongly typed Mongoose schemas with compound indexing for optimized query performance.
+* **Utils:** Reusable modules for email delivery, token generation, Excel generation, report aggregation, and AI intent parsing.
+* **Jobs:** Node-cron scheduler running on the first of every month to generate and email reports automatically.
+* **CI/CD:** Automated frontend deployment via GitHub Actions to GitHub Pages on every push to main.
+* **Docker:** Containerized backend with Dockerfile and docker-compose for consistent local and production environments.
 
 ---
 
@@ -68,7 +109,6 @@ Built on the MVC Pattern, the project maintains a strict separation of concerns 
 
 * Implementation of Swagger/OpenAPI documentation.
 * Redis integration for caching frequent report queries.
-* Full CI/CD pipeline integration for automated deployment.
 
 ---
 

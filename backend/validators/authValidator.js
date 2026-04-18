@@ -8,7 +8,12 @@ exports.registerSchema = joi.object({
       .string()
       .pattern(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-=[\]{};:'",.<>/?\\|`~])[^\s]{8,}$/,
-      ).required(),
+      )
+      .required()
+      .message({
+        "string.pattern.name":
+          "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character",
+      }),
   }),
 });
 
@@ -21,6 +26,10 @@ exports.loginSchema = joi.object({
       .pattern(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-=[\]{};:'",.<>/?\\|`~])[^\s]{8,}$/,
       )
-      .required(),
+      .required()
+      .message({
+        "string.pattern.name":
+          "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character",
+      }),
   }),
 });

@@ -5,16 +5,22 @@ export default function Auth({ onLogin }) {
   const [isLogin, setIsLogin] = useState(true);
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setSuccess("");
     const API = import.meta.env.VITE_API_URL;
-    console.log("API URL:", API);
     const url = `${API}/auth/${isLogin ? "login" : "register"}`;
     try {
       await axios.post(url, form, { withCredentials: true });
-      onLogin();
+      if (isLogin) {
+        onLogin();
+      } else {
+        setSuccess("Account created successfully! Please login.");
+        setIsLogin(true);
+      }
     } catch (err) {
       setError(err.response?.data?.message || "Something went wrong");
     }
@@ -24,6 +30,7 @@ export default function Auth({ onLogin }) {
     <div style={styles.container}>
       <div style={styles.card}>
         <h2 style={styles.title}>{isLogin ? "Welcome Back" : "Create Account"}</h2>
+        {success && <p style={styles.success}>{success}</p>}
         <form onSubmit={handleSubmit} style={styles.form}>
           {!isLogin && (
             <input
@@ -68,5 +75,6 @@ const styles = {
   input: { padding: "12px 16px", borderRadius: 8, border: "1px solid #e4e4e7", fontSize: 14 },
   button: { padding: 12, borderRadius: 8, background: "#18181b", color: "#fff", border: "none", cursor: "pointer", fontWeight: "600" },
   error: { color: "#ef4444", fontSize: 12, textAlign: "center" },
+  success: { color: "#10b981", fontSize: 13, textAlign: "center", marginBottom: 16, background: "#f0fdf4", padding: "8px", borderRadius: "6px", border: "1px solid #bbf7d0" },
   toggle: { textAlign: "center", marginTop: 16, fontSize: 14, color: "#71717a", cursor: "pointer" }
 };

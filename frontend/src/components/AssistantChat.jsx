@@ -100,7 +100,15 @@ export default function AssistantChat() {
     mediaRef.current?.stop();
     setRecording(false);
   };
+  const toggleRecording = async () => {
+    if (recording) {
+      stopRecording();
+    } else {
+      await startRecording();
+    }
+  };
 
+  
   const handleKey = (e) => {
     if (e.key === "Enter") sendText();
   };
@@ -158,14 +166,13 @@ export default function AssistantChat() {
               ➤
             </button>
             <button
-              onMouseDown={startRecording}
-              onMouseUp={stopRecording}
+              onClick={toggleRecording}
               style={{
                 ...styles.btn,
                 background: recording ? "#ef4444" : "#18181b",
               }}
             >
-              🎤
+              {recording ? "⏹" : "🎤"}
             </button>
           </div>
         </div>
